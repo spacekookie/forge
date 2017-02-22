@@ -22,7 +22,7 @@ Forge takes care of the task of synchronising config files, special setups as we
   "server": {
     "url": "forge.spacekookie.de",
     "port": 443,
-    "auth_token: "d275a731a03885298bba0c7b10ec20ac155aa3b5eae66dac806a082d73612b4d"
+    "auth_token": "d275a731a03885298bba0c7b10ec20ac155aa3b5eae66dac806a082d73612b4d"
   },
   "git_key": "none",
   "two_way": false
@@ -55,22 +55,22 @@ The way that forge knows what files go where (and you can easily check yourself)
 
 ```json
 {
-  'fileset': [
-    { 'id': 'ssh', 'path': '~/.ssh/', 'type': 'folder' },
-    { 'id': 'fish', 'path': '~/.config/fish/', 'type': 'folder' },
-    { 'id': 'tmux', 'path': '~/.tmux.conf', 'type': 'file' },
-    { 'id': 'awesome', 'path': '~/.config/awesome/', 'type': 'folder' },
-    { 'id': 'scripts', 'path': '~/.local/bin/', 'type': 'folder', 'flags': ['executable'] }
+  "fileset": [
+    { "id": "ssh", "path": "~/.ssh/", "type": "folder" },
+    { "id": "fish", "path": "~/.config/fish/", "type": "folder" },
+    { "id": "tmux", "path": "~/.tmux.conf", "type": "file" },
+    { "id": "awesome", "path": "~/.config/awesome/", "type": "folder" },
+    { "id": "scripts", "path": "~/.local/bin/", "type": "folder", "flags": ["executable"] }
   ],
-  'exclude': {
-    'idenna': [ 'scripts' ]
+  "exclude": {
+    "idenna": [ "scripts" ]
   },
-  'exclusive': {
-    'idenna': [ 'awesome' ]
+  "exclusive": {
+    "idenna": [ "awesome" ]
   }
-  'force_access': '0700',
-  'force_user': 'spacekookie',
-  'force_group': 'geeks
+  "force_access": "0700",
+  "force_user": "spacekookie",
+  "force_group": "geeks"
 }
 ```
 
