@@ -21,10 +21,9 @@ object ForgeClient {
 
     /** Build the config path and check for existance */
     val clientConf = config + "client.conf"
-    val exists = Files.exists(Paths.get(clientConf))
 
     /** Either load config or create new one */
-    exists match {
+    exists(clientConf) match {
       case true => checkConfig(clientConf)
       case false => createConfig(clientConf)
     }
@@ -48,10 +47,10 @@ object ForgeClient {
 
     /** First make sure our directory exists */
     new File(path).createNewFile()
-    
+
     /** Then load data about system */
     val source = Source.fromFile("/etc/hostname")
-    
+
     /** Hostname and twoway sync are always present  */
     val host: String = try source.mkString.replace("\n", "") finally source.close()
     val twoWay: Boolean = false
@@ -73,4 +72,6 @@ object ForgeClient {
     println("Writing config complete")
   }
 
+  /** A function that only returns if a path exists or not */
+  private def exists(str: String): Boolean = Files.exists(Paths.get(str))
 }
