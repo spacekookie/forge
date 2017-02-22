@@ -53,10 +53,11 @@ object ForgeClient {
 
     /** Hostname and twoway sync are always present  */
     val host: String = try source.mkString.replace("\n", "") finally source.close()
+    val server: Server = Server("forge.spacekookie.de", 443, None)
     val twoWay: Boolean = false
 
     /** Create a new client config with some empty fields */
-    val cc: ClientConf = ClientConf(host, None, None, twoWay)
+    val cc: ClientConf = ClientConf(host, Option(server), None, twoWay)
     clientConf = Option(cc)
 
     /** Encode config to json and write to disk */
