@@ -67,7 +67,7 @@ The way that forge knows what files go where (and you can easily check yourself)
   },
   "exclusive": {
     "idenna": [ "awesome" ]
-  }
+  },
   "force_access": "0700",
   "force_user": "spacekookie",
   "force_group": "geeks"
