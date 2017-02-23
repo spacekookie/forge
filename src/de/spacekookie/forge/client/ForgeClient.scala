@@ -27,6 +27,10 @@ object ForgeClient {
       case true => checkConfig(clientConf)
       case false => createConfig(clientConf)
     }
+    
+    /** Validate cache directory */
+    if(!exists(cache)) new File(cache).createNewFile()
+    
   }
 
   private def checkConfig(path: String) {
