@@ -1,10 +1,15 @@
 package de.spacekookie.forge.client
 
+// This enables operators without dot notation
+import language.postfixOps
+
 import java.nio.file.{ Paths, Files }
 import play.api.libs.json.{ JsValue, Json }
 
+import sys.process._
 import scala.io.Source
 import java.io.{ File, FileWriter, PrintWriter }
+
 
 object ForgeClient {
   val home: String = System.getProperty("user.home")
@@ -29,8 +34,12 @@ object ForgeClient {
     }
     
     /** Validate cache directory */
-    if(!exists(cache)) new File(cache).createNewFile()
+    // FIXME: Do this with built-in API
+    if(!exists(cache)) s"mkdir -p ${cache}" !
     
+    /** Update the cached repo */
+    // FIXME: Get the repo address from server
+    getLatestRepo("https://github.com/spacekookie/forge")
   }
 
   private def checkConfig(path: String) {
@@ -79,4 +88,17 @@ object ForgeClient {
 
   /** A function that only returns if a path exists or not */
   private def exists(str: String): Boolean = Files.exists(Paths.get(str))
+  
+  /** Function that either clones repo or updates the existing one that's cached */
+  private def getLatestRepo(repo: String) = exists(cache + "/repo") match {
+    case true => {
+      println("Updating existing repository")
+      s"git -C ${cache}repo pull" !
+    }
+    case false => {
+      println("Cloning repository for the first time")
+      s"git clone $repo ${cache}repo" !
+    }
+  }
+
 }
